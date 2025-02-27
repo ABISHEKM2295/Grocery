@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulses - GroceryShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #28a745;
+        }
+
+        .navbar .nav-link {
+            color: #fff;
+        }
+
+        .hero {
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            color: #fff;
+        }
+
+        .product-card {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="NEWLOGO-removebg-preview.png" alt="Grocery Baskets Logo"  style="height:100px; width: 100px ; margin-right: 8px;">
+GroceryShop
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="grocessory.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+                    <button class="btn btn-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Pulses</h1>
+        <p>Discover our premium selection of nutritious and high-quality pulses.</p>
+    </div>
+
+    <!-- Pulses Products -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Our Best Pulses</h2>
+        <div class="row" id="product-list"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 GroceryShop. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "Fresh Apples", price: "$3.99 / kg",img:"oil-ghee-1.png", description: "Crisp, juicy, and freshly picked apples." },
+            { name: "Red Lentils (Masoor Dal)", price: "$2.99", img:"logo.png", desc: "Rich in protein and easy to cook." },
+            { name: "Split Chickpeas (Chana Dal)", price: "$3.49", img: "https://via.placeholder.com/300", desc: "Nutritious and full of fiber." },
+            { name: "Green Gram (Moong Dal)", price: "$3.99", img: "https://via.placeholder.com/300", desc: "Low in fat and rich in protein." },
+            { name: "Black Gram (Urad Dal)", price: "$4.49", img: "https://via.placeholder.com/300", desc: "Essential for making dals and idlis." },
+            { name: "Yellow Split Peas (Toor Dal)", price: "$4.99", img: "https://via.placeholder.com/300", desc: "A staple in Indian cooking." },
+            { name: "Whole Green Lentils", price: "$2.79", img: "https://via.placeholder.com/300", desc: "Perfect for soups and curries." },
+            { name: "Black-Eyed Peas (Lobia)", price: "$3.29", img: "https://via.placeholder.com/300", desc: "High in fiber and iron." },
+            { name: "Kidney Beans (Rajma)", price: "$4.99", img: "https://via.placeholder.com/300", desc: "A popular choice for chili and stews." },
+            { name: "Chickpeas (Kabuli Chana)", price: "$3.99", img: "https://via.placeholder.com/300", desc: "Great for hummus and curries." },
+            { name: "Black Chickpeas (Kala Chana)", price: "$3.79", img: "https://via.placeholder.com/300", desc: "Rich in protein and minerals." },
+            { name: "White Peas", price: "$2.99", img: "https://via.placeholder.com/300", desc: "Used for making ragda and curries." },
+            { name: "Moth Beans", price: "$3.49", img: "https://via.placeholder.com/300", desc: "Popular in Indian and Asian cuisine." },
+            { name: "Horse Gram (Kulthi)", price: "$3.99", img: "https://via.placeholder.com/300", desc: "Highly nutritious and full of fiber." },
+            { name: "Soybeans", price: "$4.49", img: "https://via.placeholder.com/300", desc: "Great source of plant-based protein." },
+            { name: "Pigeon Peas (Arhar Dal)", price: "$4.99", img: "https://via.placeholder.com/300", desc: "A must-have in Indian households." },
+            { name: "Whole Black Gram (Sabut Urad)", price: "$3.89", img: "https://via.placeholder.com/300", desc: "Used for dals and fermented foods." },
+            { name: "Green Peas", price: "$3.29", img: "https://via.placeholder.com/300", desc: "A versatile ingredient for various dishes." },
+            { name: "Adzuki Beans", price: "$5.29", img: "https://via.placeholder.com/300", desc: "Commonly used in Asian desserts." },
+            { name: "Fava Beans", price: "$5.99", img: "https://via.placeholder.com/300", desc: "Rich in fiber and protein." },
+            { name: "Lima Beans", price: "$4.29", img: "https://via.placeholder.com/300", desc: "Great for stews and casseroles." },
+        ];
+
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${product.name} has been added to the cart!`);
+        }
+
+        function displayProducts() {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = products.map(product => `
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="${product.img}" alt="Product">
+                        <div class="product-details">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">${product.price}</p>
+                            <p class="product-description">${product.desc}</p>
+                            <button class="btn btn-success w-100" onclick='addToCart(${JSON.stringify(product)})'>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        displayProducts();
+    </script>
+</body>
+
+</html>
